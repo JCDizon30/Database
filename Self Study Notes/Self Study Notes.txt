@@ -1,0 +1,511 @@
+COLUMN = THE ATTRIBUTES OF A TABLE
+ROWS = THE DATA OR INFORMATIONS OF ATTRIBUTES
+===================================================
+//CREATING TABLE
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    major VARCHAR(50)
+);
+===================================================
+//DESCRIBE OR SHOW THE TABLE
+
+DESCRIBE student;
+===================================================
+//DROPPING TABLE
+
+DROP TABLE student;
+===================================================
+//ADDING and DROPPING COLUMN ON THE TABLE
+
+ALTER TABLE student
+ADD gpa DECIMAL(3, 2);
+
+ALTER TABLE student
+DROP gpa;
+===================================================
+
+===================================================
+//INSERTING DATA ON DATABASE TABLE
+
+INSERT INTO student
+VALUES
+(1, "John", "Data Base");
+===================================================
+//INSERTING ALL INFORMATION ON THE ATTRIBUTES ONCE
+
+INSERT INTO student
+VALUES
+(1, "John", "Data Base"),
+(4, "jACK", "Biology"),
+(5, "Mike", "DSA");
+===================================================
+//INSERTING DATA ON THE ATTRIBUTES BY SPECIFYIING THE
+ ATTRIBUTES IF ONE OF THEM HAVE NO ATTRIBUTE TO AVOID ERROR
+
+INSERT INTO student(student_id, name)
+VALUES
+(2, "Kate");
+===================================================
+// NOT NULL TO AVOID NULL
+UNIQUE TO UNIQUE THE ATTRIBUTES
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    major VARCHAR(50) UNIQUE
+);
+===================================================
+//DEFAULT USE WHEN SOMEBODY DID NOT INPUT DATA 
+AND YOU CAN PUT DEFAULT TEXT TO AVOID NULL
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    major VARCHAR(50) DEFAULT "undecided"
+);
+===================================================
+// AUTO_INCREMENT THE PIRPOSE OF THIS IS TO, WHEN
+INSERTING DATA ON THE ATTRIBUTES IT IS OK IF DON'T
+ADD THE PRIMARY KEY ATTRIBUTES BECAUSE IT IS
+AUTO_INCREMENTED.
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    major VARCHAR(50)
+);
+
+INSERT INTO student(name, major)
+VALUES
+("Kate", "Sociology"),
+("Jack", "Com Sci");
+===================================================
+
+===================================================
+//UPDATING ALL DATA IN A ATTRIBUTES
+
+UPDATE student
+SET major = "Bio"
+WHERE major = "Biology";
+
+UPDATE student
+SET major = "Information Tech";
+===================================================
+//DIRECT UPDATE THE DATA ON THE ONE ATTRBUTE YOU WANT
+
+UPDATE student
+SET major = "Com Sci"
+WHERE studend_id = 4;
+===================================================
+//COMBINING UPDATING
+
+UPDATE student
+SET major = "Web Dev"
+WHERE major = "Com Sci" or major = "Chemistry";
+
+UPDATE student
+SET name = "Jack", major = "Web Dev"
+WHERE student_id = 4;
+===================================================
+
+===================================================
+//DELETING ALL DATA ON THE ATTRIBUTES
+
+DELETE FROM student;
+===================================================
+//DIRECT DELETE ALL THE DATA ON THE ONE ROWS YOU WANT
+
+DELETE FROM student
+WHERE student_id = 5;
+===================================================
+//COMBINING DELETING
+
+DELETE FROM student 
+WHERE name = "Tom" AND major = "undecided";
+===================================================
+
+===================================================
+//BASIC QUERIES
+//GETTING INFORMATION FROM DATABASE
+//BLOCKS OF SQL COMMAND DESIGN TO GET A PARTICULAR 
+PIECE OF INFORMATTION, EXAMPLE WHEN TRACKING A HUGE 
+AMOUNT OF INFORMATION IN DATABASE YOU WANT TO GRAB
+A SPECIFIC INFORMATION EASILY
+===================================================
+//SELECTING ALL INFORMATION ON TABLE
+THE (*) SIGN MEANS SELECTING ALL DATA ON TABLE
+
+SELECT * 
+FROM tabel_name
+===================================================
+//SELECTING ALL INFORMATION OR ROWS ON A PARTICULAR 
+COLUMN OR ATTRIBUTES
+
+SELECT column_name FROM tabel_name
+===================================================
+//SELECTING ALL INFORMATION OR ROWS ON THE TWO OR MORE
+COLUMN OR ATTRIBUTES
+
+SELECT column_name, column_name 
+FROM tabel_name
+===================================================
+//MAKE THE INFORMATION OR ROW OF THE SELECTING COLUMN 
+OR ATTRIBUTES ORDERED BY.
+
+//ASCENDING ORDER
+SELECT column_name, column_name
+FROM table_name
+ORDER BY column_name; 
+
+//DESCENDING OR OPPOSITE ORDER
+SELECT column_name, column_name
+FROM table_name
+ORDER BY column_name DESC; 
+
+//COMBINING ORDER
+SELECT *
+FROM table_name
+ORDER BY column_name, column_name;
+===================================================
+//LIMITING THE SELECTING COLUMN OR ATTRBUTES
+SELECT * 
+FROM student
+LIMIT 2;
+
+//ORDER THE LIMITING SELECTING COLUMN OR ATTRBUTES
+SELECT *
+FROM student
+ORDER BY column_name
+LIMIT 2;
+===================================================
+//SELECTING DATA BY USING WHERE
+SELECT *
+FROM table_name
+WHERE column_name = "data";
+
+SELECT column_name, column_name
+FROM table_name
+WHERE column_name = "data" OR column_name = "data";
+
+===================================================
+//USING COMPARISON OPERATORS  
+( < ) LESS THAN
+( > ) GREATER THAN
+( <= ) LESS THAN OR EQUAL TO
+( >= ) GREATER THAN OR EQUAL TO
+( = ) EQUAL
+( <> ) NOT EQUAL TO
+( AND ) 
+( OR )
+
+SELECT column_name, column_name
+FROM table_name
+WHERE column_name <> "data";
+
+SELECT *
+FROM table_name
+WHERE column_name <= 3;
+
+SELECT *
+FROM table_name
+WHERE column_name <= 3 or column_name <= 3 ;
+===================================================
+//SELECTING BY USING THE DATA INSIDE COLUMN
+
+SELECT *
+FROM table_name
+WEHERE column_name IN ("data", "data");
+
+SELECT *
+FROM table_name
+WEHERE column_name IN ("data", "data") AND student_id > 2;
+===================================================
+//SELECT USING (AS) for renaming a Column or Attributes
+
+SELECT first_name AS forename, last_name AS surename
+FROM employee
+
+SELECT orderDate AS "Date Ordered"
+FROM orders;
+===================================================
+//SELETING USING (DISTINCT) show the different data 
+by showing once 
+
+SELECT DISTINCT sex 
+FROM employee;
+===================================================
+//SELETING USING (COUNT) counting the Data
+
+SELECT COUNT(emp_id)
+FROM employee;
+===================================================
+//WILDCARDS - A WAY DEFINING DIFFERENT PATTERNS THAT WE 
+WANT TO MATCH  SPECIFIC PIECE DATA TO, GRABBING DATA THAT
+MATCHES A SPECIFIC PATTERN
+(%) = ANY NUMBER CHARACTERS
+(_) = ONE CHARACTER
+
+SELECT *
+FROM table_Name
+WHERE Column_Name LIKE '%pattern';
+====================================================
+//UNION = SPECIAL SQL OPERATORS, USE TO COMBINING 
+THE RESULT OF MULTIPLE SELECT STATEMENTS INTO ONE
+
+SELECT colum_name
+FROM table_name
+UNION
+SELECT colum_name
+FROM table_name
+===================================================
+//JOIN = USE TO COMBINE ROWS FROM 2 OR MORE TABLES
+BASED ON THE RELATED COLUMNS
+
+SELECT table1_name.column_id, table1_name.column_id, table2_name.column_id
+FROM table1_name
+JOIN table2_name
+ON table1_name.column_id = table2_name.column_id;
+
+===================================================
+//NESTED QUERIES = IS A QUERIE WHERE WE'RE GOING TO BE 
+USING MULTIPLE SELECT STATEMENTS, IN ORDER TO GET A SPECIFIC 
+PIECE OF INFORMATION
+
+SELECT table1_name.column_name, table1_name.column_name
+ FROM table1_name
+ WHERE table1_name.column_name IN (
+ 	SELECT table2_name.column_name
+	FROM table2_name
+	WHERE table2_name.column_name > 30000
+ );
+
+===================================================
+//ON DELETE = DELETING ENTRIES IN THE DATABASE WHEN THEY HAVE
+FOREIGN KEYS ASSOCIATED TO THEM
+
+//ON DELETE SET NULL = IS BASICALLY WHERE IF WE DELETE ONE OF THESE EMPLOYEES,
+THAT MEANS THAT THE MANAGER ID THAT WAS ASSOCIATED TO THAT EMPLOYEE IS GOING
+TO GET SET TO NULL. USE WHEN THE SAME COLUMNS IT JUST A FOREIGH KEY.
+
+FOREIGN KEY(mgr_id) RFERENCES employee(emp_id) ON DELETE DET NULL
+
+
+//ON DELETE CASCADE = IS ESSENTIALLY WHERE IF WE DELETE THE EMPLOYEE
+WHOSE ID STORES IN THE MANAGER ID COLUMN,THEN WE'RE JUST GOING TO DELETE
+THIS ENTIRE ROW IN THE DATABASE. USE WHEN IT IS A ACTUALLY A PRIMARY KEY,
+BECAUSE  A PRIMARY KEY CAN'T HAVE A NULL VALUE.
+
+FOREIGN KEY(branch_id) RFERENCES branch(branch_id) ON DELETE CASCADE
+
+===================================================
+//TRIGGERS = BLOCK OF SQL CODE WHICH WE CAN WRITE, 
+WHICH WILL DEFINE A CERTAIN ACTION THAT SHOULD HAPPEN.
+WHEN A CERTAIN OPERATION GETS PERFORMED ON THE DATABASE.
+
+
+
+
+
+
+===================================================
+COMPANY_TUTORIAL, SQL PRATICES
+===================================================
+1. //FOREIGN KET = ALWAYS PUT (ON DELETE SET NULL WHEN DECLARING FOREIGN KEY
+//SYNTAX:
+
+CREATE TABLE branch (
+  branch_id INT PRIMARY KEY,
+  branch_name VARCHAR(40),
+  mgr_id INT,
+  mgr_start_date DATE,
+  FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
+);
+
+2. //ADDING FOREIGN KEY TABLE TO TABLE
+//SYNTAX:
+
+ALTER TABLE employee
+ADD FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL;
+
+ALTER TABLE employee
+ADD FOREIGN KEY(super_id) REFERENCES employee(emp_id) ON DELETE SET NULL;
+
+
+===========================================================
+//MORE BASIC QUERIES
+
+3. //FIND THE NUMBER OF FEMALE EMPLOYEES BORN AFTER 1970
+
+SELECT COUNT(emp_id)
+FROM employee
+WHERE sex = 'F' AND birth_date > '1971-01-01;
+
+4. //FINDING THE AVERAGE OF ALL EMPLOYEE'S SALARIES
+
+SELECT AVG(salary)
+FROM employee;
+
+SELECT AVG(salary)
+FROM employee
+WHERE sex = 'M';
+
+5. //FINDING THE SUM OF ALL EMPLOYEE'S SALARIES
+
+SELECT SUM(salary)
+FROM employee;
+
+6. //FIND OUT HOW MANY MALES AND FEMALES THERE ARE
+
+SELECT COUNT(sex), sex
+FROM employee
+GROUP BY sex;
+
+7. //FIND THE TOTAL SALES OF EACH SALESMAN
+
+SELECT SUM(total_sales), emp_id
+FROM works_with
+GROUP BY emp_id
+
+8. //FIND THE TOTAL SALES OF EACH CLIENT SPENT
+
+SELECT SUM(total_sales), client_id
+FROM works_with
+GROUP BY client_id
+
+
+===============================================================
+//WILDCARDS
+
+9. //FIND ANY CLIENT'S WHO ARE AN LLC
+
+SELECT *
+FROM client
+WHERE client_name LIKE '%LLC';
+
+10. //FIND  ANY BRANCH SUPPLIERS WHO ARE IN THE LABEL BUSINESS
+
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '%Label%';
+
+11. //FIND ANY EMPLOYEE BORN IN OCTOBER
+
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-10%';
+
+12. // FIND ANY CKIENTS WHO ARE SCHOOLS
+
+SELECT *
+FROM client
+WHERE client_name LIKE '%school%';
+
+
+===================================================================
+//UNION
+
+13. //FIND A LIST OF EMPLOYEE AND BRANCH NAMES
+
+SELECT first_name
+FROM employee
+UNION
+SELECT branch_name
+FROM branch;
+
+14. //FIND A LIST OF EMPLOYEE FIRST AND LAST NAME, 
+AND FIND LIST OF BRANCH NAMES AND MGR_ID
+
+SELECT first_name, last_name
+FROM employee
+UNION
+SELECT branch_name, mgr_id
+FROM branch;
+
+15. //FIND ALL NAMES ON THE TABLES AND RENAME THE COLUMN
+
+SELECT first_name AS "Company Name"
+FROM employee
+UNION
+SELECT branch_name
+FROM branch;
+UNION
+SELECT client_name
+FROM client;
+
+16. //FIND  A LIST OF ALL CLIENTS & BRANCH SUPPLIERS NAME
+
+SELECT client_name
+FROM client
+UNION
+SELECT supplier_name
+FROM branch_supplier;
+
+17. //FIND A LIST OF ALL MONEY SPENT OR EARNED BY THE COMPANY
+
+SELECT salary
+FROM employee
+UNION
+SELECT total_sales
+FROM work_with;
+
+18.// In Ordering_System DataBase 
+
+SELECT CustomerID, FirstName, LastName,
+    (SELECT SUM(TotalAmount) 
+     FROM orders 
+     WHERE orders.CustomerID = customers.CustomerID) AS TotalSpent
+FROM customers
+LIMIT 5;
+
+
+===================================================================
+//JOIN
+
+19.// FIND ALL BRANCHES AND THE NAMES OF THEIR MANAGERS
+
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+JOIN branch
+ON employee.emp_id = branch.mgr_id;
+
+20.// LEFT JOIN = SELETING ALL ROWS IN THE LEFT TABLE
+
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+LEFT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+
+21.// RIGHT JOIN = SELETING ALL ROWS IN THE LEFT TABLE
+
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+RIGHT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+
+
+===================================================================
+//NESTED QUERIES =  CODE WILL BE FIRST EXECUTED IN THE INNER THEN SLOWLY IN OUTER
+
+22.// FIND NAMES OF ALL EMPLOYEES WHO HAVE SOLD OVER 30,000 TO A SINGLE CLIENT
+
+ SELECT employee.first_name, employee.last_name
+ FROM employee
+ WHERE employee.emp_id IN (
+ 	SELECT works_with.emp_id
+	FROM works_with
+	WHERE works_with.total_sales > 30000
+ );
+
+23.// FIND ALL CLIENTS WHO ARE HANDLED BY THE BRANCH, THAT MICHEAL SCOTT
+MANAGERS, ASSUME YOU KNOW MICHEAL'S ID.
+
+SELECT client.client_name
+FROM client
+WHERE client.branch_id = (
+	SELECT branch.branch_id
+    FROM branch
+    WHERE branch.mgr_id = 102
+);
+

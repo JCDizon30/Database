@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2023 at 06:16 PM
+-- Generation Time: Dec 19, 2023 at 04:19 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,7 +41,8 @@ CREATE TABLE `branch` (
 INSERT INTO `branch` (`branch_id`, `branch_name`, `mgr_id`, `mgr_start_date`) VALUES
 (1, 'Corporate', 100, '2006-02-09'),
 (2, 'Scranton', 102, '1992-04-06'),
-(3, 'Stamford', 106, '1998-02-13');
+(3, 'Stamford', 106, '1998-02-13'),
+(4, 'Buffalo', NULL, NULL);
 
 -- --------------------------------------------------------
 
